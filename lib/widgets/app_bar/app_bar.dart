@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:interview/app_bar/feed_pop.dart';
+import 'package:interview/widgets/app_bar/feed_pop.dart';
 
 class AppBar extends StatelessWidget {
   const AppBar({
@@ -39,10 +39,10 @@ class AppBar extends StatelessWidget {
                     ),
                   ),
                 ),
-                //TITLE('LEARN')
-                Column(
+                //TITLE
+                const Column(
                   children: <Widget>[
-                    const SizedBox(
+                    SizedBox(
                       height: 8,
                     ),
                     Text(
@@ -51,7 +51,6 @@ class AppBar extends StatelessWidget {
                   ],
                 ),
                 //RIGHT ICON
-                //TODO
                 const SortFeedPopup()
                 // },
               ],

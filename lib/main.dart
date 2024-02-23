@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:interview/feed.dart';
+import 'package:interview/screens/feed.dart';
+import 'package:interview/providers/photo_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +12,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mars Rover Photos',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => PhotoProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Mars Rover Photos',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const FeedPage(),
       ),
-      home: const FeedPage(),
     );
   }
 }
