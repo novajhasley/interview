@@ -17,30 +17,21 @@ class AppBar extends StatelessWidget {
         bottom: false,
         child: Column(
           children: <Widget>[
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisSize: MainAxisSize.max,
               children: [
                 //LEFT ICON
                 Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 20),
+                  padding: EdgeInsets.only(left: 10, right: 20),
                   child: SizedBox(
                     width: 35,
                     height: 33,
-                    child: GestureDetector(
-                      child: Image.asset(
-                        'assets/images/topic_menu_icon.png',
-                        height: 33,
-                      ),
-                      onTap: () {
-                        // ZoomDrawer.of(context)!.open();
-                      },
-                    ),
                   ),
                 ),
                 //TITLE
-                const Column(
+                Column(
                   children: <Widget>[
                     SizedBox(
                       height: 8,
@@ -51,7 +42,7 @@ class AppBar extends StatelessWidget {
                   ],
                 ),
                 //RIGHT ICON
-                const SortFeedPopup()
+                SortFeedPopup()
                 // },
               ],
             ),

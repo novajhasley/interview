@@ -33,21 +33,17 @@ class PhotoProvider extends ChangeNotifier {
         'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=$apiKey&sol=$sol&camera=$camera';
 
     final response = await http.get(Uri.parse(apiUrl));
+    // print(response.body);
+    //I am currently getting this error from this print statement:
+    //"You have exceeded your rate limit. Try again later or contact us at https://api.nasa.gov:443/contact/ for assistance"
+    //I'll try again later
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body)['photos'];
       photos
           .addAll(data.map((photoJson) => Photo.fromJson(photoJson)).toList());
+      notifyListeners();
     } else {
       throw Exception('Failed to load photos');
-    }
-    notifyListeners();
-  }
-
-  List<Photo> fetchFilteredPhotos() {
-    if (camera == 'all') {
-      return photos;
-    } else {
-      return photos.where((photo) => photo.camera == camera).toList();
     }
   }
 }

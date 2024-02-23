@@ -39,8 +39,6 @@ class _BottomModalSortState extends State<BottomModalSort> {
                     value: photoProv.camera,
                     onChanged: (value) {
                       photoProv.setCamera(value!);
-                      photoProv.photos.clear();
-                      // photoProv.currentPage = 1; //TODO: Needs a setter on provider page
                     },
                     items: [
                       'all',
@@ -84,9 +82,9 @@ class _BottomModalSortState extends State<BottomModalSort> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      photoProv.fetchPhotos();
+                      photoProv.photos.clear(); //clear current list
+                      photoProv.fetchPhotos(); //then fetch new list with filters
                       Navigator.of(context).pop();
-                      setState(() {});
                     },
                     child: const Text('Filter'),
                   ),
