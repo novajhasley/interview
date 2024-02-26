@@ -19,9 +19,11 @@ class _PhotoPageState extends State<PhotoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.grey[850],
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Colors.red,
         ),
       ),
       body: Padding(
@@ -38,11 +40,13 @@ class _PhotoPageState extends State<PhotoPage> {
             const SizedBox(height: 8.0),
             Text(
               'Sol: ${widget.photo.sol}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.red),
             ),
             Text(
               'Camera: ${widget.photo.camera}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.red),
             ),
             const SizedBox(height: 8.0),
           ],

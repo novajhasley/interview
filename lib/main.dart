@@ -18,12 +18,9 @@ class MyApp extends StatelessWidget {
           create: (context) => PhotoProvider(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Mars Rover Photos',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const FeedPage(),
+      child: const MaterialApp(
+        title: 'NASA Mars Photos',
+        home: FeedPage(),
       ),
     );
   }
