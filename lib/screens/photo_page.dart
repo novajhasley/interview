@@ -25,12 +25,19 @@ class _PhotoPageState extends State<PhotoPage> {
         iconTheme: const IconThemeData(
           color: Colors.red,
         ),
+        //TITLE (CAMERA - SOL)
+        title: Text(
+          '${widget.photo.camera} - ${widget.photo.sol}',
+          style:
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //PHOTO
             Image.network(
               widget.photo.imgSrc,
               fit: BoxFit.cover,
@@ -38,15 +45,10 @@ class _PhotoPageState extends State<PhotoPage> {
               width: double.infinity,
             ),
             const SizedBox(height: 8.0),
-            Text(
-              'Sol: ${widget.photo.sol}',
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.red),
-            ),
-            Text(
-              'Camera: ${widget.photo.camera}',
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.red),
+            //DESCRIPTION
+            const Text(
+              'Description here',
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
             ),
             const SizedBox(height: 8.0),
           ],

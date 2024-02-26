@@ -1,12 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:interview/models/photo_model.dart';
 import 'package:interview/screens/photo_page.dart';
 // import 'package:http/http.dart' as http;
 // import 'dart:convert';
 
-import 'package:interview/widgets/app_bar/feed_pop.dart';
 import 'package:interview/providers/photo_provider.dart';
+import 'package:interview/widgets/app_bar/feed_app_bar.dart';
+import 'package:interview/widgets/photo_card.dart';
 import 'package:provider/provider.dart';
 
 class FeedPage extends StatefulWidget {
@@ -40,67 +42,7 @@ class _FeedPageState extends State<FeedPage> {
         body: Column(
           children: [
             //APP BAR
-            Container(
-              decoration: const BoxDecoration(
-                color: Colors.black,
-              ),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * .08,
-              child: SafeArea(
-                bottom: false,
-                child: Column(
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        const SizedBox(
-                          width: 80,
-                          height: 33,
-                        ),
-
-                        //TITLE
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: SizedBox(
-                            height: 40,
-                            child: Image.asset(
-                              'assets/images/nasa_logo.png',
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                        //RIGHT ICON
-                        const SortFeedPopup()
-                      ],
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          height: 1,
-                        ),
-                        const Positioned.fill(
-                          bottom: -1,
-                          child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 11.0,
-                              ),
-                              child: Divider(
-                                color: Color.fromRGBO(40, 77, 115, 1),
-                                thickness: 2,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            const FeedAppBar(),
             //BODY (LIST OF ASTEROIDS)
             Expanded(
               child: photoProv.photos.isEmpty
@@ -115,44 +57,7 @@ class _FeedPageState extends State<FeedPage> {
                       itemBuilder: (context, index) {
                         final photo = photoProv.photos[index];
                         //PHOTO CARD
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PhotoPage(photo: photo),
-                              ),
-                            );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image.network(
-                                  photo.imgSrc,
-                                  fit: BoxFit.cover,
-                                  height: 300,
-                                  width: double.infinity,
-                                ),
-                                const SizedBox(height: 8.0),
-                                Text(
-                                  'Sol: ${photo.sol}',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.red),
-                                ),
-                                Text(
-                                  'Camera: ${photo.camera}',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.red),
-                                ),
-                                const SizedBox(height: 8.0),
-                              ],
-                            ),
-                          ),
-                        );
+                        return PhotoCard(photo: photo);
                       },
                     ),
             ),
